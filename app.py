@@ -1,3 +1,5 @@
+"""Application web Flask et analyse des expressions de la calculatrice."""
+
 from flask import Flask, request, render_template
 from operators import add, subtract, multiply, divide
 
@@ -11,6 +13,17 @@ OPS = {
 }
 
 def calculate(expr: str):
+    """Évalue une expression contenant deux nombres et un opérateur.
+
+    Args:
+        expr: Expression textuelle comme ``"2+3"``.
+
+    Returns:
+        Résultat produit par l'opération arithmétique sélectionnée.
+
+    Raises:
+        ValueError: Si l'expression est vide, mal formée ou non numérique.
+    """
     if not expr or not isinstance(expr, str):
         raise ValueError("empty expression")
 
@@ -27,7 +40,7 @@ def calculate(expr: str):
             op_char = ch
 
     if op_pos <= 0 or op_pos >= len(s) - 1:
-        # operator at start/end or not found
+        # L'opérateur est au début, à la fin ou absent.
         raise ValueError("invalid expression format")
 
     left = s[:op_pos]
@@ -43,6 +56,11 @@ def calculate(expr: str):
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    """Affiche la calculatrice et traite les expressions soumises.
+
+    Returns:
+        Réponse HTML rendue pour les requêtes GET et POST.
+    """
     result = ""
     if request.method == 'POST':
         expression = request.form.get('display', '')
