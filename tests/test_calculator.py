@@ -57,6 +57,15 @@ class ApplicationTests(unittest.TestCase):
         response = self.client.get("/")
         self.assertEqual(response.status_code, 200)
 
+    def test_calculator_buttons_display_expected_labels(self):
+        """Vérifie que les boutons numériques et opérateurs affichent les bons libellés."""
+        response = self.client.get("/")
+
+        self.assertIn(b">2<", response.data)
+        self.assertIn(b">8<", response.data)
+        self.assertIn(b">*<", response.data)
+        self.assertIn(b">/<", response.data)
+
     def test_post_renders_result(self):
         """Vérifie que POST / affiche le résultat de l'expression soumise."""
         response = self.client.post("/", data={"display": "6*7"})
