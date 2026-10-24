@@ -2,7 +2,7 @@
 
 ## Équipe
 
-- Numéro d'équipe :12
+- Numéro d'équipe : 12
 - Membres : Ahmed Ben Khalifa et Ahmed Benhamla
 
 ## Objectif
@@ -41,12 +41,31 @@ une expression, cliquer sur `=` pour la soumettre et sur `C` pour l'effacer.
 ## Tests
 
 Les tests sont dans `tests/`. Ils couvrent les opérations arithmétiques,
-le parsing des expressions et la route Flask. Sur la version initiale, certains
-tests échouent volontairement et servent à documenter les bogues à corriger.
+la division par zéro, le parsing des expressions, les libellés des boutons et
+la route Flask. Les quatre bogues identifiés pendant le développement ont été
+corrigés et la suite complète passe actuellement avec 10 tests réussis.
 
 ```powershell
-python -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
+
+Résultat attendu :
+
+```text
+Ran 10 tests
+OK
+```
+
+## Corrections réalisées
+
+Les problèmes suivants ont été corrigés sur des branches dédiées, puis
+intégrés dans `main` après revue des Pull Requests :
+
+- correction des libellés des boutons `2`, `8`, `*` et `/`;
+- remplacement de la division entière par une division réelle;
+- gestion explicite de la division par zéro;
+- correction de la multiplication, qui utilisait auparavant une puissance;
+- correction de l'ordre des opérandes de la soustraction.
 
 ## Structure
 
@@ -62,5 +81,6 @@ Chaque répertoire contient un README qui précise ses responsabilités.
 
 Pour chaque issue, créer une branche dédiée (`fix/issue-numero-description`),
 ajouter ou mettre à jour un test, corriger le problème, puis exécuter toute la
-suite. Ouvrir une Pull Request liée à l'issue, demander une revue et fusionner
-seulement après validation.
+suite. Ouvrir une Pull Request vers `main` liée à l'issue, demander une revue
+et fusionner seulement après validation. Avant de proposer une fusion, vérifier
+que le test ciblé et la suite complète passent.

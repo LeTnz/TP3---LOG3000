@@ -9,9 +9,26 @@ les erreurs de validation et la route Flask.
 Depuis la racine du projet :
 
 ```powershell
-python -m unittest discover -s tests -v
+.\.venv\Scripts\python.exe -m unittest discover -s tests -v
 ```
 
-Les échecs observés sur la version initiale sont des preuves reproductibles
-pour les Issues GitHub. Ils doivent disparaître après les corrections réalisées
-sur les branches correspondantes.
+La suite contient actuellement 10 tests et vérifie :
+
+- les quatre opérations arithmétiques;
+- le refus explicite de la division par zéro;
+- le parsing des expressions et le rejet des expressions invalides;
+- l'affichage des boutons `2`, `8`, `*` et `/`;
+- les réponses GET et POST de la route Flask principale.
+
+Résultat attendu après les corrections :
+
+```text
+Ran 10 tests
+OK
+```
+
+Les tests ont d'abord permis de reproduire les quatre bogues suivis dans les
+Issues GitHub. Chaque correction a été réalisée sur une branche dédiée,
+validée par le test ciblé, puis intégrée dans `main` par Pull Request. La
+commande complète doit être exécutée après chaque fusion afin de vérifier que
+les corrections restent compatibles entre elles.
