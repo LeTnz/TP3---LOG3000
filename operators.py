@@ -51,6 +51,8 @@ def divide(a,b):
         Quotient de ``a`` et ``b``.
 
     Raises:
-        ZeroDivisionError: Si ``b`` est zéro.
+        ValueError: Si ``b`` est zéro.
     """
-    return a // b
+    if b == 0:
+        raise ValueError("division by zero is not possible")
+    return a / b
